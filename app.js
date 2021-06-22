@@ -21,9 +21,7 @@ function counter(color)
 {
   return async(req,res)=>{
     try{
-      let value = await client.get(color);
-      value=Number(value)+1;
-      await client.set(color,`${value}`)
+      let value = await client.incr(color);
       console.log(color," ",value);
       res.send({value});
     }
